@@ -1,10 +1,12 @@
 ##################################################################
 ### Summary
+# Generate the list of tracks under same album for each track in testing.
 
 
 ##################################################################
 ### Libraries & Predefined Functions
 ## Load Libraries
+from __future__ import print_function
 from operator import itemgetter
 import time
 
@@ -40,13 +42,11 @@ with open('Data/lib_album_track.txt','w') as file:
 			file.write("|"+str(item[1]))
 			
 ## Build Album-Track library
-file1 = open('Data/lib_album_track.txt')
-trainAlbum = file1.readlines()
-file1.close()
 trainAlbumDict={}
-for line_album in trainAlbum:
-	test_album = line_album.strip("\n").split("|",maxsplit=1)
-	trainAlbumDict[test_album[0]]=test_album[1]
+with open("Data/lib_album_track.txt") as trainAlbum:
+	for line_album in trainAlbum:
+		test_album = line_album.strip("\n").split("|",maxsplit=1)
+		trainAlbumDict[test_album[0]]=test_album[1]
 	
 	
 ## Generate Track items under same album for test dataset
@@ -62,4 +62,4 @@ with open('Data/test_album_track.txt','w') as testAlbum:
 			else:
 				testAlbum.write(line_txt+"\n")
 				
-print("Spend %.2f s"%(time.time()-start_time))
+print("Finished, Spend %.2f s"%(time.time()-start_time))

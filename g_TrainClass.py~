@@ -1,5 +1,5 @@
 ##################################################################
-## g_TrainClass.py
+## g_Hierarchy.py
 # Generate the classification of each training entity. 
 # Label track as 1, album as 2, artist as 3, and genre as 4.
 

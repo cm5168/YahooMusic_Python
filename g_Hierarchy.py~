@@ -35,4 +35,6 @@ with open("RawData/testTrack_hierarchy.txt","w") as testHierarchy:
 				cur_track = line.strip("\n")
 				testHierarchy.write(cur_user+"|"+cur_track+"|"+lib_trackData[cur_track]+"\n")
 			print(cur_user)
+
+
 print("Finished, Spend %.2f s"%(time.time()-start_time))
