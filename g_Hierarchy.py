@@ -8,6 +8,11 @@
 from __future__ import print_function
 import time
 
+## Define variables
+TRACK_DATA_FILE = "RawData/trackData2.txt"
+TRACK_HIERARCHY_FILE = "RawData/testTrack_hierarchy.txt"
+TEST_DATA_FILE = "RawData/testIdx2.txt"
+
 ##################################################################
 ### Main Program
 ## Load trackData2.txt as Library for hierarchy structure.
@@ -15,7 +20,7 @@ import time
 lib_trackData = {}
 start_time = time.time()
 # Hierarchy structure of all the track items are stored in trackData2.txt
-with open("RawData/trackData2.txt") as trackData:
+with open(TRACK_DATA_FILE) as trackData:
 	for line in trackData:
 		# We only need the track ID as index, so only split once
 		[track_Id,track_detail] = line.strip("\n").split("|",maxsplit = 1)
@@ -23,9 +28,9 @@ with open("RawData/trackData2.txt") as trackData:
 
 ## Load list of track items and save the hierarchy structure in a new file
 # Open the destiantion file. You can change to your own
-with open("RawData/testTrack_hierarchy.txt","w") as testHierarchy:
+with open(TRACK_HIERARCHY_FILE,"w") as testHierarchy:
 	# Open the source file, you can use your own source
-	with open("RawData/testIdx2.txt") as testData:
+	with open(TEST_DATA_FILE) as testData:
 		for line in testData:
 			# "|" represent user information
 			if "|" in line:

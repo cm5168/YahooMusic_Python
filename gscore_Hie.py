@@ -64,7 +64,7 @@ with open('Data/test_raw_score.txt','w') as testResult:
 					testResult.write("\n")
 				# Read hierarchy structure for next user
 				lines_test = read_lines(testData,6)
-				print(cur_user,time.time()-start_time)
+				print(cur_user,"%.2f s"%time.time()-start_time)
 				#print("Next User")
 print("Finished, Spend %.2f s"%(time.time()-start_time))
 

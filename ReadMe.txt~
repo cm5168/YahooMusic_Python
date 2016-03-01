@@ -4,6 +4,7 @@ Create "Data" folder to store modified data, "Result" to store result.
 1.g_Hierarchy.py
 
 	Generate hierarchy structure for a list of track items.
+	(The test item hierarchy structure is already generated in Raw Dataset.)
 
 2.g_TrainClass.py
 
@@ -15,17 +16,18 @@ ArtistID|Rating|3
 GenreID|Rating|4
 AlbumID|Rating|2
 
+	(This Program will classify each item since the Item ID can be track, album, artist or genre.)
+
 3.gscore_Hie.py
 	
 	Generate ratings for all the item in the hierarchy structure.
-
+	
 4.g_TrainMean.py
 
 	Generate mean of each user's ratings.
 
-5.glib_*.py
-
-	for example glib_AlbTck.py, which generate the list of tracks under same album for each track.
-
-The Following program require numpy.
+	(Different user have different rating preference.)
+	
+Simple Algorithm
+1. 
 
