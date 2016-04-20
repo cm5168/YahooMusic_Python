@@ -1,5 +1,5 @@
 For all the Python code, place data under "RawData" folder.
-Create "Data" folder to store modified data, "Result" to store result.
+Create "Data" folder to store modified data, "Results" to store result.
 
 1.g_Hierarchy.py
 
@@ -27,5 +27,7 @@ AlbumID|Rating|2
 
 	for example glib_AlbTck.py, which generate the list of tracks under same album for each track.
 
-The Following program require numpy.
+Algorithm
+1. a_threshold.py 	---- Run gscore_Hie.py before run this algorithm
 
+	Replace the "None" rating with a fixed value. And sort 6 item for each user.

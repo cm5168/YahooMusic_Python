@@ -7,6 +7,17 @@
 ## Load Libraries
 from __future__ import print_function
 import time
+import os
+
+# Environment Variables
+HIERARCHY_FILE = "RawData/testTrack_hierarchy.txt"
+USER_LIST_FILE = "Data/test_UserList.txt"
+TRAIN_DATA_FILE = "RawData/trainIdx2.txt"
+USER_MEAN_FILE = "Data/train_Mean.txt"
+
+# Create Folder is not there
+if not os.path.isdir("Data"):
+	os.makedirs("Data")
 
 ## Functions
 # Return a list of int
@@ -28,8 +39,8 @@ def read_lines(f, num):
 start_time = time.time()
 ## Get Testing user list, save as test_UserList.txt
 cur_user = -1
-with open("Data/test_UserList.txt",'w') as userList:
-	with open("RawData/testTrack_hierarchy.txt") as f:
+with open(USER_LIST_FILE,'w') as userList:
+	with open(HIERARCHY_FILE) as f:
 		for line in f:
 			f_list=line.strip("\n").split("|")
 			if cur_user != f_list[0]:
@@ -38,9 +49,9 @@ with open("Data/test_UserList.txt",'w') as userList:
 
 ## Get user rating mean from training data
 cur_trainUser = [-1,-1]
-with open("Data/train_Mean.txt","w") as trainMeanData:
-	with open("Data/test_UserList.txt") as testUserList:
-		with open("RawData/trainIdx2.txt") as trainData:
+with open(USER_MEAN_FILE,"w") as trainMeanData:
+	with open(USER_LIST_FILE) as testUserList:
+		with open(TRAIN_DATA_FILE) as trainData:
 			for line in testUserList:
 				cur_user = line.strip("\n")
 				while int(cur_trainUser[0])<int(cur_user):

@@ -8,8 +8,19 @@
 ## Load Libraries
 from __future__ import print_function
 import time
-## Functions
+import os
 
+# Environment Variables
+ALBUM_DATA_FILE = 'RawData/albumData2.txt'
+ARTIST_DATA_FILE = 'RawData/artistData2.txt'
+GENRE_DATA_FILE = 'RawData/genreData2.txt'
+TRAIN_DATA_FILE = 'RawData/trainIdx2.txt'
+CLASSIFIED_FILE = 'Data/train_Classified.txt'
+
+# Create Folder is not there
+if not os.path.isdir("Data"):
+	os.makedirs("Data")
+	
 ##################################################################
 ### Main Program
 # Time Count
@@ -18,24 +29,24 @@ start_time = time.time()
 ## Load Album, Artist, and Genre Data as library
 class_lib = {}
 # Load Album
-with open('RawData/albumData2.txt') as f:
+with open(ALBUM_DATA_FILE) as f:
 	for line in f:
 		temp = line.strip("\n").split("|")
 		class_lib[temp[0]] = 2
 # Load Artist
-with open('RawData/artistData2.txt') as f:
+with open(ARTIST_DATA_FILE) as f:
 	for line in f:
 		class_lib[line.strip("\n")] = 3
 # Load Genre
-with open('RawData/genreData2.txt') as f:
+with open(GENRE_DATA_FILE) as f:
 	for line in f:
 		class_lib[line.strip("\n")] = 4
 
 ## Read file
 # The destination file to save train data with classification
-with open('Data/train_Classified.txt','w') as trainMod:
+with open(CLASSIFIED_FILE,'w') as trainMod:
 	# The source file the contains training track ID	
-	with open('RawData/trainIdx2.txt') as trainData:
+	with open(TRAIN_DATA_FILE) as trainData:
 		for line in trainData:
 			# Identify the "UserID|RatingCount" line
 			if '|' in line:

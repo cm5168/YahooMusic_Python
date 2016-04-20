@@ -7,6 +7,7 @@
 ## Load Libraries
 from __future__ import print_function
 import time
+import sys
 
 ## Define variables
 TRACK_DATA_FILE = "RawData/trackData2.txt"
@@ -22,8 +23,11 @@ start_time = time.time()
 # Hierarchy structure of all the track items are stored in trackData2.txt
 with open(TRACK_DATA_FILE) as trackData:
 	for line in trackData:
-		# We only need the track ID as index, so only split once
-		[track_Id,track_detail] = line.strip("\n").split("|",maxsplit = 1)
+		# We only need the track ID as index, so only split once		
+		if sys.version_info.major == 3:
+			[track_Id,track_detail] = line.strip("\n").split("|",maxsplit = 1)
+		else:
+			[track_Id,track_detail] = line.strip("\n").split("|",1)
 		lib_trackData[track_Id] = track_detail
 
 ## Load list of track items and save the hierarchy structure in a new file
@@ -35,6 +39,7 @@ with open(TRACK_HIERARCHY_FILE,"w") as testHierarchy:
 			# "|" represent user information
 			if "|" in line:
 				[cur_user,cur_track] = line.strip("\n").split("|")
+
 			# Track item have no "|" in the line			
 			else:
 				cur_track = line.strip("\n")

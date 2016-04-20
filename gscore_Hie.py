@@ -8,7 +8,16 @@
 # Load Libraries
 from __future__ import print_function
 import time
+import os
 
+# Environment Variables
+TEST_HIE_SCORE = 'Data/test_raw_score.txt'
+TEST_HIE_FILE = 'RawData/testTrack_hierarchy.txt'
+TRAIN_DATA_FILE = 'RawData/trainIdx2.txt'
+# Create Folder is not there
+if not os.path.isdir("Data"):
+	os.makedirs("Data")
+	
 # Functions
 def read_lines(file, num):
 	lines = []
@@ -30,11 +39,11 @@ start_time = time.time()
 
 ## Read file
 # Destination file
-with open('Data/test_raw_score.txt','w') as testResult:
+with open(TEST_HIE_SCORE,'w') as testResult:
 	# Source file that contains the item ID in the hierarchy structure
-	with open('RawData/testTrack_hierarchy.txt') as testData:
+	with open(TEST_HIE_FILE) as testData:
 		# Source file that contains the item ratings by each user.
-		with open('RawData/trainIdx2.txt') as trainData:
+		with open(TRAIN_DATA_FILE) as trainData:
 			# 6 test song for each user
 			lines_test = read_lines(testData,6)
 			while lines_test:
@@ -64,7 +73,7 @@ with open('Data/test_raw_score.txt','w') as testResult:
 					testResult.write("\n")
 				# Read hierarchy structure for next user
 				lines_test = read_lines(testData,6)
-				print(cur_user,"%.2f s"%time.time()-start_time)
+				print(cur_user,"%.2f s"%(time.time()-start_time))
 				#print("Next User")
 print("Finished, Spend %.2f s"%(time.time()-start_time))
 
